@@ -1,0 +1,212 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titling}
+
+% -----------------------------------------------------
+% Instructor and Template Settings
+% -----------------------------------------------------
+\makeatletter
+\newcommand{\BvrSetLabInstructor}[1]{\gdef\Bvr@LabInstructor{#1}}
+\newcommand{\Bvr@LabInstructor}{Dr. Nisha Thakur}
+\newcommand{\BvrLabInstructorValue}{\Bvr@LabInstructor}
+
+\newcommand{\BvrSubtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip 0.5em}%
+}
+\makeatother
+
+\pretitle{\begin{center}\bfseries\fontsize{18bp}{18bp}\selectfont}
+
+\newcommand{\BvrHint}[1]{%
+  {\normalfont\normalsize\itshape\hfill #1}}
+
+% -----------------------------------------------------
+
+\title{Digital Deception Detection Suite}
+
+\BvrSetLabInstructor{Dr. Nisha Thakur}
+
+\BvrSubtitle{%
+  Project Proposal for UCS503P (Software Engineering) \\
+  Submitted to: \BvrLabInstructorValue \\ \bfseries
+  Thapar Institute of Engineering and Technology%
+}
+
+\author{
+  Harmilan, CSED%
+  \thanks{Roll No: \texttt{1024030522}, Email: \texttt{hharmilan\_be24@thapar.edu}}
+  \and
+  Vardaan Jain, CSED%
+  \thanks{Roll No: \texttt{1024030502}, Email: \texttt{vjain5\_be24@thapar.edu}}
+  \and
+  Aman Bansal, CSED%
+  \thanks{Roll No: \texttt{1024030503}, Email: \texttt{abansal\_be24@thapar.edu}}
+  \and
+  Siddharth, CSED%
+  \thanks{Roll No: \texttt{1024030519}, Email: \texttt{ssiddharth\_be24@thapar.edu}}
+}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+  \textbf{Repository:} \url{https://github.com/harmilan141/Digital-Deception-Detection-Suite}
+\end{center}
+
+\section{Higher-order goal%
+  \BvrHint{\ldots secondary framing}}
+This project aims to make everyday digital interactions safer by reducing the time and expertise a user needs to recognize deceptive content, including phishing messages, fake/malicious URLs, fabricated news articles, and manipulated (deepfake) media. The immediate engineering objective is to develop a measurable and deployable software solution for \emph{multi-modal deception detection and risk scoring across text, links, and media shared with a user.}
+
+\section{Time-to-value %
+\BvrHint{\ldots primary heuristic}}
+\begin{itemize}[leftmargin=0.7cm]
+    \item We will accelerate value delivery by rapidly prototyping a single detection pipeline (e.g., phishing/URL scoring) end-to-end and validating it with real inputs within each short development cycle.
+    \item We will favor continuous feedback over premature optimization, using weekly iterations and early CI-backed automation to minimize deployment overhead.
+    \item Initial success will be measured through tangible, testable outcomes from the first iteration (a working detector with a reported accuracy), with subsequent releases driven by validated user feedback.
+\end{itemize}
+
+\section{Problem Statement}
+Everyday users are increasingly exposed to deceptive digital content that is difficult to identify without technical expertise: phishing emails/SMS impersonating banks or services, shortened or spoofed URLs leading to malicious sites, fabricated or misleading news articles, and AI-generated deepfake images, audio, and video used for scams or misinformation. Common operational pain points include:
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{No unified check:} Users must rely on separate, unfamiliar tools to verify suspicious links, messages, and media files independently.
+    \item \textbf{Low detection literacy:} Most non-technical users cannot reliably distinguish sophisticated phishing attempts or synthetic media from genuine content.
+    \item \textbf{Delayed or absent warnings:} Deceptive content is often identified only after harm occurs (e.g., credential theft or unauthorized financial transactions).
+    \item \textbf{Fragmented signals:} Disparate deception indicators (domain age, sender reputation, linguistic markers, manipulation artifacts) are not aggregated into an actionable, unified score.
+\end{itemize}
+
+\textbf{Why this matters now (contextual relevance):} Generative AI tools have lowered the technical and financial barrier to creating hyper-realistic deceptive text, cloned voices, and forged videos. A lightweight, explainable detection layer that non-expert users can query before interacting with untrusted digital artifacts directly mitigates modern social-engineering attacks.
+
+\section{Proposed Solution %
+\BvrHint{\ldots Software Proposition}}
+\subsection{Overview}
+A unified web platform providing multi-modal analysis:
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{Text/message analyzer:} Evaluates text payloads for social-engineering indicators (urgency, credential/financial requests, known malicious patterns).
+    \item \textbf{URL/link risk checker:} Evaluates links using domain-reputation feeds, lexical characteristics (length, character entropy, typosquatting), and redirect traces.
+    \item \textbf{Media authenticity checker:} Analyzes images, audio, and short video clips using pre-trained computer-vision and audio manipulation detection models.
+    \item \textbf{Unified risk score:} Aggregates sub-signals into an interpretable risk level (\emph{Low}, \emph{Medium}, \emph{High}) with clear textual rationale.
+    \item \textbf{Report/history log:} Retains user-submitted scan logs for reference and offline benchmark evaluation.
+\end{itemize}
+
+\subsection{Core workflow}
+\begin{enumerate}[leftmargin=0.7cm]
+    \item \textbf{Submission:} User submits raw text, a target URL, or a media file.
+    \item \textbf{Routing:} The gateway routes the payload to the relevant analyzer microservice(s).
+    \item \textbf{Feature Extraction:} Analyzers extract lexical, structural, or neural features and output sub-scores with human-readable evidence.
+    \item \textbf{Aggregation:} The unified scoring engine applies transparent heuristic weights to generate an overall risk score and summary.
+    \item \textbf{Display:} The interface presents the verdict, key indicators, and clear remediation guidance.
+    \item \textbf{Logging:} The transaction metadata is persisted for tracking and testing.
+\end{enumerate}
+
+\subsection{Operational constraints for everyday users}
+\begin{itemize}[leftmargin=0.7cm]
+    \item Maintain low latency by executing compute-heavy inference server-side, keeping client requirements minimal.
+    \item Provide explainable evidence over black-box outputs to reinforce user awareness.
+    \item Integrate pre-trained open-source weights and third-party threat feeds to ensure implementation viability within academic deadlines.
+    \item Fail safely (e.g., returning \emph{``Unable to verify''} rather than an inaccurate \emph{``Safe''} status) during third-party service degradation.
+\end{itemize}
+
+\section{Solution Approach %
+\BvrHint{\ldots Engineering focus}}
+This project prioritizes dependable system integration, clean API orchestration, and low-latency serving over novel model architecture research.
+
+\subsection{Detection logic %
+\BvrHint{\ldots non-research}}
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{Text Analyzer:} Regex-based heuristic filters combined with a pre-trained transformer model fine-tuned for spam/phishing classification.
+    \item \textbf{URL Analyzer:} Feature extraction (homoglyphs, entropy, path depth) paired with domain-age and reputation querying via public threat APIs.
+    \item \textbf{Media Analyzer:} Open-source pre-trained deepfake detection networks (e.g., spatial-frequency artifact detectors, audio spectral analysis).
+    \item \textbf{Scoring Integration:} Weighted rule-based aggregation function ensuring explainability without second-tier black-box latency.
+\end{itemize}
+
+\subsection{Web architecture %
+\BvrHint{\ldots web-based solution}}
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{Frontend:} Responsive single-page application (React / Tailwind CSS).
+    \item \textbf{Backend API:} Stateless REST backend (FastAPI / Node.js) handling validation, job dispatch, scoring, and authentication.
+    \item \textbf{Database:} Relational database (PostgreSQL / SQLite) for scan metadata, user management, and evaluation records.
+\end{itemize}
+
+\subsection{CI/CD and fast delivery enabler}
+\begin{itemize}[leftmargin=0.7cm]
+    \item Automated unit and integration testing running against synthetic phishing/clean datasets on every pull request.
+    \item Containerized deployment pipelines (Docker, GitHub Actions) pushing automated builds to staging.
+\end{itemize}
+
+\section{Evaluation Criteria %
+\BvrHint{\ldots measurable and attributable}}
+
+\subsection{Primary evaluation metric}
+\textbf{Detection Accuracy per Modality:} Percentage of correctly classified items on held-out benchmark datasets.
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{Target:} $\geq 85\%$ accuracy across text, URL, and media test sets.
+    \item \textbf{Attribution:} Verified against public datasets (e.g., Nazario Phishing Corpus, Kaggle Phishing URL dataset) and a curated internal test suite.
+\end{itemize}
+
+\subsection{Secondary evaluation metrics}
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{False Positive Rate (FPR):} Maintained below $5\%$ on benign data to prevent alert fatigue.
+    \item \textbf{Explanation Coverage:} Target $100\%$ evidence reporting on all items flagged as Medium or High risk.
+    \item \textbf{Response Latency:} $\leq 1.5\text{ s}$ for text/URL checks; $\leq 5.0\text{ s}$ for media analysis.
+    \item \textbf{User Trust/Actionability:} Measured via post-pilot survey scores on verdict clarity.
+\end{itemize}
+
+\subsection{Pilot validation plan %
+\BvrHint{\ldots high-level}}
+\begin{itemize}[leftmargin=0.7cm]
+    \item Pilot evaluation involving 10--15 student users testing known-safe and known-deceptive samples.
+    \item Quantitative evaluation of system throughput, accuracy, and failure rate under active testing.
+\end{itemize}
+
+\section{Scalability %
+\BvrHint{\ldots with foresight}}
+\begin{enumerate}[leftmargin=0.7cm]
+    \item \textbf{System Scalability:} Decoupled frontend/backend architectures with asynchronous background workers (e.g., Celery/Redis) handling compute-intensive media inference.
+    \item \textbf{Operational Deployability:} Fully containerized runtime (Docker) deployable to cloud-hosted environments with centralized environment management.
+\end{enumerate}
+
+\section{Engine Availability Heuristic}
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{Web Framework:} FastAPI (Python) or Express.js (Node.js) with React frontend.
+    \item \textbf{Pre-trained Models:} Hugging Face Transformers for text; open-source PyTorch checkpoints for deepfake image/audio inference.
+    \item \textbf{Threat Intelligence:} Google Safe Browsing API, VirusTotal API, and Whois lookup packages.
+    \item \textbf{Database \& CI/CD:} PostgreSQL database, PyTest/Jest testing frameworks, and GitHub Actions CI/CD workflows.
+\end{itemize}
+
+\section{Project Scope and Deliverables %
+\BvrHint{\ldots iteration-friendly}}
+\subsection{Initial deliverable %
+\BvrHint{\ldots first iteration}}
+\begin{itemize}[leftmargin=0.7cm]
+    \item Core text and URL analysis modules with rule-based heuristics and baseline classification.
+    \item Unified scoring mechanism with explanatory output for text/link checks.
+    \item Automated CI pipeline with unit test coverage and staging deployment.
+\end{itemize}
+
+\subsection{Subsequent deliverables}
+\begin{itemize}[leftmargin=0.7cm]
+    \item Media manipulation checking module (image/audio deepfake detection).
+    \item User history dashboard and exportable scan reports.
+    \item Refined score weighting tuned on pilot validation findings.
+\end{itemize}
+
+\section{Risks and Mitigations}
+\begin{itemize}[leftmargin=0.7cm]
+    \item \textbf{False Sense of Security:} Present probabilistic risk levels with clear disclaimers rather than binary safe/unsafe guarantees.
+    \item \textbf{External API Outages:} Implement timeout fallbacks returning graceful \emph{``Service Unavailable''} flags without crashing the pipeline.
+    \item \textbf{User Privacy:} Enforce data retention limits, strip raw personal identifiers, and provide user-initiated log purging.
+\end{itemize}
+
+\section{Summary}
+This proposal presents an explainable, multi-modal deception detection platform designed for practical deployment and end-user accessibility. By utilizing established open-source models, iterative CI/CD practices, and transparent scoring metrics, the project delivers rapid time-to-value while fulfilling all software engineering milestones for UCS503P.
+
+\end{document}
