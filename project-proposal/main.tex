@@ -63,11 +63,11 @@
 \end{center}
 
 \section{Higher-order goal%
-  \BvrHint{\ldots secondary framing}}
+  \BvrHint{}}
 This project aims to make everyday digital interactions safer by reducing the time and expertise a user needs to recognize deceptive content, including phishing messages, fake/malicious URLs, fabricated news articles, and manipulated (deepfake) media. The immediate engineering objective is to develop a measurable and deployable software solution for \emph{multi-modal deception detection and risk scoring across text, links, and media shared with a user.}
 
 \section{Time-to-value %
-\BvrHint{\ldots primary heuristic}}
+\BvrHint{}}
 \begin{itemize}[leftmargin=0.7cm]
     \item We will accelerate value delivery by rapidly prototyping a single detection pipeline (e.g., phishing/URL scoring) end-to-end and validating it with real inputs within each short development cycle.
     \item We will favor continuous feedback over premature optimization, using weekly iterations and early CI-backed automation to minimize deployment overhead.
@@ -86,7 +86,7 @@ Everyday users are increasingly exposed to deceptive digital content that is dif
 \textbf{Why this matters now (contextual relevance):} Generative AI tools have lowered the technical and financial barrier to creating hyper-realistic deceptive text, cloned voices, and forged videos. A lightweight, explainable detection layer that non-expert users can query before interacting with untrusted digital artifacts directly mitigates modern social-engineering attacks.
 
 \section{Proposed Solution %
-\BvrHint{\ldots Software Proposition}}
+\BvrHint{}}
 \subsection{Overview}
 A unified web platform providing multi-modal analysis:
 \begin{itemize}[leftmargin=0.7cm]
@@ -116,11 +116,11 @@ A unified web platform providing multi-modal analysis:
 \end{itemize}
 
 \section{Solution Approach %
-\BvrHint{\ldots Engineering focus}}
+\BvrHint{}}
 This project prioritizes dependable system integration, clean API orchestration, and low-latency serving over novel model architecture research.
 
 \subsection{Detection logic %
-\BvrHint{\ldots non-research}}
+\BvrHint{}}
 \begin{itemize}[leftmargin=0.7cm]
     \item \textbf{Text Analyzer:} Regex-based heuristic filters combined with a pre-trained transformer model fine-tuned for spam/phishing classification.
     \item \textbf{URL Analyzer:} Feature extraction (homoglyphs, entropy, path depth) paired with domain-age and reputation querying via public threat APIs.
@@ -129,7 +129,7 @@ This project prioritizes dependable system integration, clean API orchestration,
 \end{itemize}
 
 \subsection{Web architecture %
-\BvrHint{\ldots web-based solution}}
+\BvrHint{}}
 \begin{itemize}[leftmargin=0.7cm]
     \item \textbf{Frontend:} Responsive single-page application (React / Tailwind CSS).
     \item \textbf{Backend API:} Stateless REST backend (FastAPI / Node.js) handling validation, job dispatch, scoring, and authentication.
@@ -143,7 +143,7 @@ This project prioritizes dependable system integration, clean API orchestration,
 \end{itemize}
 
 \section{Evaluation Criteria %
-\BvrHint{\ldots measurable and attributable}}
+\BvrHint{}}
 
 \subsection{Primary evaluation metric}
 \textbf{Detection Accuracy per Modality:} Percentage of correctly classified items on held-out benchmark datasets.
@@ -161,14 +161,14 @@ This project prioritizes dependable system integration, clean API orchestration,
 \end{itemize}
 
 \subsection{Pilot validation plan %
-\BvrHint{\ldots high-level}}
+\BvrHint{}}
 \begin{itemize}[leftmargin=0.7cm]
     \item Pilot evaluation involving 10--15 student users testing known-safe and known-deceptive samples.
     \item Quantitative evaluation of system throughput, accuracy, and failure rate under active testing.
 \end{itemize}
 
 \section{Scalability %
-\BvrHint{\ldots with foresight}}
+\BvrHint{}}
 \begin{enumerate}[leftmargin=0.7cm]
     \item \textbf{System Scalability:} Decoupled frontend/backend architectures with asynchronous background workers (e.g., Celery/Redis) handling compute-intensive media inference.
     \item \textbf{Operational Deployability:} Fully containerized runtime (Docker) deployable to cloud-hosted environments with centralized environment management.
@@ -183,9 +183,9 @@ This project prioritizes dependable system integration, clean API orchestration,
 \end{itemize}
 
 \section{Project Scope and Deliverables %
-\BvrHint{\ldots iteration-friendly}}
+\BvrHint{}}
 \subsection{Initial deliverable %
-\BvrHint{\ldots first iteration}}
+\BvrHint{}}
 \begin{itemize}[leftmargin=0.7cm]
     \item Core text and URL analysis modules with rule-based heuristics and baseline classification.
     \item Unified scoring mechanism with explanatory output for text/link checks.
