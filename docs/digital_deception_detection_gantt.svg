@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1060">
+<rect width="100%" height="100%" fill="white"/>
+<text x="30" y="42" font-family="Arial" font-size="28" font-weight="bold" fill="#17365d">GANTT CHART – DIGITAL DECEPTION DETECTION SUITE</text>
+<text x="30" y="73" font-family="Arial" font-size="16" fill="#555">Project Duration: 18 Aug 2026 – 20 Nov 2026</text>
+<text x="1510" y="73" font-family="Arial" font-size="16" font-weight="bold" fill="#7a3db8">Lab Day: Tuesday</text>
+
+<rect x="20" y="95" width="1760" height="55" fill="#17365d"/>
+<text x="40" y="129" font-family="Arial" font-size="16" font-weight="bold" fill="white">ID</text>
+<text x="90" y="129" font-family="Arial" font-size="16" font-weight="bold" fill="white">TASK / ACTIVITY</text>
+
+<rect x="410.0" y="95" width="198.9" height="55" fill="#d9eaf7" stroke="#aaa"/>
+<text x="509.5" y="129" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#222">AUGUST 2026</text>
+
+<rect x="608.9" y="95" width="426.3" height="55" fill="#e2f0d9" stroke="#aaa"/>
+<text x="822.1" y="129" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#222">SEPTEMBER 2026</text>
+
+<rect x="1035.3" y="95" width="440.5" height="55" fill="#fce4d6" stroke="#aaa"/>
+<text x="1255.5" y="129" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#222">OCTOBER 2026</text>
+
+<rect x="1475.8" y="95" width="284.2" height="55" fill="#eadcf8" stroke="#aaa"/>
+<text x="1617.9" y="129" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#222">NOVEMBER 2026</text>
+
+<rect x="410.0" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="459.7" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">18–24 Aug</text>
+
+<rect x="495.3" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="545.0" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">24–30 Aug</text>
+
+<rect x="594.7" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="644.5" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">31–6 Aug</text>
+
+<rect x="694.2" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="743.9" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">7–13 Sep</text>
+
+<rect x="793.7" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="843.4" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">14–20 Sep</text>
+
+<rect x="893.2" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="942.9" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">21–27 Sep</text>
+
+<rect x="992.6" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="1042.4" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">28–4 Sep</text>
+
+<rect x="1092.1" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="1141.8" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">5–11 Oct</text>
+
+<rect x="1191.6" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="1241.3" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">12–18 Oct</text>
+
+<rect x="1291.1" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="1340.8" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">19–25 Oct</text>
+
+<rect x="1390.5" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="1440.3" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">26–1 Oct</text>
+
+<rect x="1490.0" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="1539.7" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">2–8 Nov</text>
+
+<rect x="1589.5" y="150" width="99.5" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="1639.2" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">9–15 Nov</text>
+
+<rect x="1688.9" y="150" width="71.1" height="30" fill="#f4f4f4" stroke="#ddd"/>
+<text x="1724.5" y="170" text-anchor="middle" font-family="Arial" font-size="11" fill="#333">16–20 Nov</text>
+
+<!-- Tuesday Lab Days -->
+
+<rect x="410.0" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="417.1" y1="180" x2="417.1" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="509.5" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="516.6" y1="180" x2="516.6" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="608.9" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="616.1" y1="180" x2="616.1" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="708.4" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="715.5" y1="180" x2="715.5" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="807.9" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="815.0" y1="180" x2="815.0" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="907.4" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="914.5" y1="180" x2="914.5" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="1006.8" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="1013.9" y1="180" x2="1013.9" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="1106.3" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="1113.4" y1="180" x2="1113.4" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="1205.8" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="1212.9" y1="180" x2="1212.9" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="1305.3" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="1312.4" y1="180" x2="1312.4" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="1404.7" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="1411.8" y1="180" x2="1411.8" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="1504.2" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="1511.3" y1="180" x2="1511.3" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="1603.7" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="1610.8" y1="180" x2="1610.8" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<rect x="1703.2" y="180" width="14.2" height="720" fill="#f3e5ff"/>
+<line x1="1710.3" y1="180" x2="1710.3" y2="900" stroke="#9c4dcc" stroke-dasharray="5,4"/>
+
+<!-- Task 1 -->
+
+<rect x="20" y="180" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="209" font-family="Arial" font-size="13" fill="#222">1</text>
+<text x="90" y="209" font-family="Arial" font-size="13" fill="#222">Project Planning &amp; Topic Finalization</text>
+<rect x="410.0" y="189" width="42.6" height="27" rx="5" fill="#6fa8dc"/>
+
+<!-- Task 2 -->
+
+<rect x="20" y="225" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="254" font-family="Arial" font-size="13" fill="#222">2</text>
+<text x="90" y="254" font-family="Arial" font-size="13" fill="#222">Requirement Gathering &amp; Analysis</text>
+<rect x="410.0" y="234" width="85.3" height="27" rx="5" fill="#6fa8dc"/>
+
+<!-- Task 3 -->
+
+<rect x="20" y="270" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="299" font-family="Arial" font-size="13" fill="#222">3</text>
+<text x="90" y="299" font-family="Arial" font-size="13" fill="#222">Literature Review</text>
+<rect x="452.6" y="279" width="99.5" height="27" rx="5" fill="#6fa8dc"/>
+
+<!-- Task 4 -->
+
+<rect x="20" y="315" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="344" font-family="Arial" font-size="13" fill="#222">4</text>
+<text x="90" y="344" font-family="Arial" font-size="13" fill="#222">Gantt Chart &amp; Use Case Diagram</text>
+<rect x="509.5" y="324" width="56.8" height="27" rx="5" fill="#6aa84f"/>
+
+<!-- Task 5 -->
+
+<rect x="20" y="360" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="389" font-family="Arial" font-size="13" fill="#222">5</text>
+<text x="90" y="389" font-family="Arial" font-size="13" fill="#222">Activity Diagram</text>
+<rect x="566.3" y="369" width="56.8" height="27" rx="5" fill="#6aa84f"/>
+
+
+<!-- Task 6 -->
+
+<rect x="20" y="405" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="434" font-family="Arial" font-size="13" fill="#222">6</text>
+<text x="90" y="434" font-family="Arial" font-size="13" fill="#222">System &amp; UML Finalization</text>
+<rect x="623.2" y="414" width="99.5" height="27" rx="5" fill="#f1c232"/>
+
+<!-- Task 7 -->
+
+<rect x="20" y="450" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="479" font-family="Arial" font-size="13" fill="#222">7</text>
+<text x="90" y="479" font-family="Arial" font-size="13" fill="#222">Setup Development Environment</text>
+<rect x="694.2" y="459" width="85.3" height="27" rx="5" fill="#f1c232"/>
+
+<!-- Task 8 -->
+
+<rect x="20" y="495" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="524" font-family="Arial" font-size="13" fill="#222">8</text>
+<text x="90" y="524" font-family="Arial" font-size="13" fill="#222">Database Design</text>
+<rect x="736.8" y="504" width="127.9" height="27" rx="5" fill="#f1c232"/>
+
+<!-- Task 9 -->
+
+<rect x="20" y="540" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="569" font-family="Arial" font-size="13" fill="#222">9</text>
+<text x="90" y="569" font-family="Arial" font-size="13" fill="#222">Browser Extension – Design</text>
+<rect x="793.7" y="549" width="127.9" height="27" rx="5" fill="#e06666"/>
+
+<!-- Task 10 -->
+
+<rect x="20" y="585" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="614" font-family="Arial" font-size="13" fill="#222">10</text>
+<text x="90" y="614" font-family="Arial" font-size="13" fill="#222">Browser Extension – Development (Fetch Text / URL / Media)</text>
+<rect x="893.2" y="594" width="213.2" height="27" rx="5" fill="#e06666"/>
+
+<!-- Task 11 -->
+
+<rect x="20" y="630" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="659" font-family="Arial" font-size="13" fill="#222">11</text>
+<text x="90" y="659" font-family="Arial" font-size="13" fill="#222">Web Application – Core Development (Interface, Routing, API)</text>
+<rect x="992.6" y="639" width="270.0" height="27" rx="5" fill="#8e7cc3"/>
+
+<!-- Task 12 -->
+
+<rect x="20" y="675" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="704" font-family="Arial" font-size="13" fill="#222">12</text>
+<text x="90" y="704" font-family="Arial" font-size="13" fill="#222">Analyzer Modules Development (Text / URL / Media)</text>
+<rect x="1092.1" y="684" width="298.4" height="27" rx="5" fill="#8e7cc3"/>
+
+<!-- Task 13 -->
+
+<rect x="20" y="720" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="749" font-family="Arial" font-size="13" fill="#222">13</text>
+<text x="90" y="749" font-family="Arial" font-size="13" fill="#222">Risk Scoring, Aggregation &amp; Explanation</text>
+<rect x="1291.1" y="729" width="184.7" height="27" rx="5" fill="#46bdc6"/>
+
+<!-- Task 14 -->
+
+<rect x="20" y="765" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="794" font-family="Arial" font-size="13" fill="#222">14</text>
+<text x="90" y="794" font-family="Arial" font-size="13" fill="#222">Database Integration &amp; Logging</text>
+<rect x="1390.5" y="774" width="170.5" height="27" rx="5" fill="#46bdc6"/>
+
+<!-- Task 15 -->
+
+<rect x="20" y="810" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="839" font-family="Arial" font-size="13" fill="#222">15</text>
+<text x="90" y="839" font-family="Arial" font-size="13" fill="#222">Testing, Debugging &amp; Improvements</text>
+<rect x="1490.0" y="819" width="170.5" height="27" rx="5" fill="#3d85c6"/>
+
+<!-- Task 16 -->
+
+<rect x="20" y="855" width="1760" height="45" fill="none" stroke="#ddd"/>
+<text x="42" y="884" font-family="Arial" font-size="13" fill="#222">16</text>
+<text x="90" y="884" font-family="Arial" font-size="13" fill="#222">Final Testing, Documentation &amp; Submission</text>
+<rect x="1589.5" y="864" width="170.5" height="27" rx="5" fill="#cc4125"/>
+
+<!-- Weekly Grid Lines -->
+
+<line x1="495.3" y1="180" x2="495.3" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="594.7" y1="180" x2="594.7" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="694.2" y1="180" x2="694.2" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="793.7" y1="180" x2="793.7" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="893.2" y1="180" x2="893.2" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="992.6" y1="180" x2="992.6" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="1092.1" y1="180" x2="1092.1" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="1191.6" y1="180" x2="1191.6" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="1291.1" y1="180" x2="1291.1" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="1390.5" y1="180" x2="1390.5" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="1490.0" y1="180" x2="1490.0" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="1589.5" y1="180" x2="1589.5" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+<line x1="1688.9" y1="180" x2="1688.9" y2="900" stroke="#ddd" stroke-dasharray="3,4"/>
+
+</svg>
