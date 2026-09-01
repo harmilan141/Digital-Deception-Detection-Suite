@@ -1,0 +1,273 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="ucd1" name="Use Case Diagram">
+    <mxGraphModel dx="2575" dy="1450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="F1Q8zUAfOanvhdUqRs1v-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="880" width="1340" x="200" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="title1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=22;fontStyle=1;fillColor=none;strokeColor=default;" value="USE CASE DIAGRAM – DIGITAL DECEPTION DETECTION SUITE" vertex="1">
+          <mxGeometry height="40" width="1210" x="230" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="boundarylabel1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=16;fontStyle=1;fillColor=none;strokeColor=default;" value="Digital Deception Detection Suite" vertex="1">
+          <mxGeometry height="30" width="440" x="620" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=none;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=none;" value="Browser Extension (Chat Platform Extension)" vertex="1">
+          <mxGeometry height="80" width="60" x="40" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="n13" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#FFFFFF);strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=none;" value="Administrator (System Admin)" vertex="1">
+          <mxGeometry height="80" width="60" x="70" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=none;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=none;" value="" vertex="1">
+          <mxGeometry height="70" width="50" x="1290" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="F1Q8zUAfOanvhdUqRs1v-12" edge="1" parent="1" source="n15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="n46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=none;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=none;" value="User" vertex="1">
+          <mxGeometry height="80" width="60" x="1560" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="n16" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B4332;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Capture Selected Content from Chat" vertex="1">
+          <mxGeometry height="60" width="175" x="235" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="F1Q8zUAfOanvhdUqRs1v-3" edge="1" parent="1" source="n17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;" target="F1Q8zUAfOanvhdUqRs1v-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n17" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B4332;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Extract Information (Text, URL, Sender, Timestamp, Media)" vertex="1">
+          <mxGeometry height="80" width="175" x="235" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="F1Q8zUAfOanvhdUqRs1v-7" edge="1" parent="1" source="n18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="n21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B4332;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Send to Web App (Secure API Call)" vertex="1">
+          <mxGeometry height="55" width="175" x="235" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="n20" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B4332;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="View History / Reports (Optional)" vertex="1">
+          <mxGeometry height="55" width="185" x="230" y="523" as="geometry" />
+        </mxCell>
+        <mxCell id="F1Q8zUAfOanvhdUqRs1v-6" edge="1" parent="1" source="n21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="n22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n21" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#0E2A43;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Receive Data from Extension" vertex="1">
+          <mxGeometry height="60" width="170" x="450" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="n22" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#0E2A43;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Validate &amp;amp; Sanitize Input" vertex="1">
+          <mxGeometry height="60" width="170" x="450" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="n23" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#0E2A43;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Input Valid?" vertex="1">
+          <mxGeometry height="90" width="110" x="480" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="n24" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#0E2A43;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Show Error / Invalid Input" vertex="1">
+          <mxGeometry height="60" width="140" x="410" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="n25" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#0E2A43;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Show Loading / Processing Status" vertex="1">
+          <mxGeometry height="60" width="150" x="550" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="n27" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#0E2A43;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="View System Logs &amp;amp; Audit" vertex="1">
+          <mxGeometry height="55" width="155" x="435" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="n28" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#0E2A43;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Manage Threat Feeds / APIs" vertex="1">
+          <mxGeometry height="55" width="165" x="605" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="n29" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#0E2A43;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="System Settings &amp;amp; Configuration" vertex="1">
+          <mxGeometry height="55" width="170" x="785" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="n30" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A3B00;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Analyze Content (Unified Risk Scoring)" vertex="1">
+          <mxGeometry height="65" width="175" x="738" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="n31" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A3B00;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Aggregate Sub-scores &amp;amp; Compute Overall Risk Score" vertex="1">
+          <mxGeometry height="65" width="195" x="728" y="280.5" as="geometry" />
+        </mxCell>
+        <mxCell id="n32" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A3B00;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Generate Explanation &amp;amp; Recommendations" vertex="1">
+          <mxGeometry height="65" width="195" x="728" y="375.5" as="geometry" />
+        </mxCell>
+        <mxCell id="n33" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A3B00;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Analyze Success Rate" vertex="1">
+          <mxGeometry height="55" width="175" x="743" y="470.5" as="geometry" />
+        </mxCell>
+        <mxCell id="n34" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#4A3B00;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Analysis Successful?" vertex="1">
+          <mxGeometry height="90" width="130" x="695" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="n35" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A3B00;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Unable to Verify (Fail Safely)" vertex="1">
+          <mxGeometry height="60" width="160" x="590" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="n36" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A3B00;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Return Results to Web Interface" vertex="1">
+          <mxGeometry height="60" width="175" x="795" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="F1Q8zUAfOanvhdUqRs1v-10" edge="1" parent="1" source="n37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" target="n46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n37" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A3B00;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Save Scan Log to DB (User, Input, Type, Scores, Timestamp, Evidence)" vertex="1">
+          <mxGeometry height="75" width="195" x="990" y="638" as="geometry" />
+        </mxCell>
+        <mxCell id="n38" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4A3B00;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Retrieve History / Logs (on user request)" vertex="1">
+          <mxGeometry height="65" width="195" x="990" y="728" as="geometry" />
+        </mxCell>
+        <mxCell id="n39" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B1F5E;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Text Analyzer (Phishing Detection)" vertex="1">
+          <mxGeometry height="60" width="180" x="950" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="n40" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B1F5E;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="URL Analyzer (Link Risk Assessment)" vertex="1">
+          <mxGeometry height="60" width="180" x="950" y="197" as="geometry" />
+        </mxCell>
+        <mxCell id="n41" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B1F5E;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Media Analyzer (Deepfake Detection)" vertex="1">
+          <mxGeometry height="60" width="180" x="950" y="277" as="geometry" />
+        </mxCell>
+        <mxCell id="n42" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B1F5E;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Open Digital Deception Detection Suite" vertex="1">
+          <mxGeometry height="65" width="175" x="1240" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="n43" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B1F5E;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Install &amp;amp; Enable Browser Extension" vertex="1">
+          <mxGeometry height="65" width="175" x="1240" y="392" as="geometry" />
+        </mxCell>
+        <mxCell id="n44" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B1F5E;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="In Chat Platform Select message / URL / Media to analyze" vertex="1">
+          <mxGeometry height="75" width="175" x="1240" y="472" as="geometry" />
+        </mxCell>
+        <mxCell id="n45" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B1F5E;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="View History / Reports (Optional)" vertex="1">
+          <mxGeometry height="55" width="170" x="1232.5" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="F1Q8zUAfOanvhdUqRs1v-14" edge="1" parent="1" source="n46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="n45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n46" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B1F5E;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="View Risk Score, Explanation &amp;amp; Recommendations" vertex="1">
+          <mxGeometry height="70" width="175" x="1230" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="n47" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(transparent,#B5739D);strokeColor=default;dashed=1;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;align=left;spacingLeft=6;verticalAlign=top;" value="Supported Platforms WhatsApp Web Telegram Web Messenger Web (and similar)" vertex="1">
+          <mxGeometry height="55" width="145" x="70" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="n48" edge="1" parent="1" source="n11" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n16" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n50" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;" target="n47" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="100" y="280" />
+              <mxPoint x="100" y="287.59" />
+              <mxPoint x="120" y="287.59" />
+            </Array>
+            <mxPoint x="100" y="290" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n51" edge="1" parent="1" source="n16" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n17" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n52" edge="1" parent="1" source="n17" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n18" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n55" edge="1" parent="1" source="n22" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n23" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n56" edge="1" parent="1" source="n23" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n24" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n57" edge="1" parent="1" source="n23" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n25" value="Yes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n58" edge="1" parent="1" source="n25" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n30" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n59" edge="1" parent="1" source="n30" style="edgeStyle=none;html=1;endArrow=open;endFill=1;dashed=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=9;" target="n39" value="&amp;lt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n60" edge="1" parent="1" source="n30" style="edgeStyle=none;html=1;endArrow=open;endFill=1;dashed=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=9;" target="n40" value="&amp;lt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n61" edge="1" parent="1" source="n30" style="edgeStyle=none;html=1;endArrow=open;endFill=1;dashed=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=9;" target="n41" value="&amp;lt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n62" edge="1" parent="1" source="n40" style="edgeStyle=none;html=1;endArrow=open;endFill=1;dashed=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=9;" target="n14" value="&amp;lt;&amp;gt;">
+          <mxGeometry relative="1" x="1" y="-32" as="geometry">
+            <mxPoint x="25" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n63" edge="1" parent="1" source="n30" style="edgeStyle=none;html=1;endArrow=open;endFill=1;dashed=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=9;" target="n31" value="&amp;lt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n64" edge="1" parent="1" source="n31" style="edgeStyle=none;html=1;endArrow=open;endFill=1;dashed=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=9;" target="n32" value="&amp;lt;&amp;gt;">
+          <mxGeometry relative="1" y="33" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n65" edge="1" parent="1" source="n32" style="edgeStyle=none;html=1;endArrow=open;endFill=1;dashed=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=9;" target="n33" value="&amp;lt;&amp;gt;">
+          <mxGeometry relative="1" x="-0.1406" y="50" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n66" edge="1" parent="1" source="n33" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n34" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n67" edge="1" parent="1" source="n34" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n35" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n68" edge="1" parent="1" source="n34" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n36" value="Yes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n69" edge="1" parent="1" source="n35" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n20" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="595.52" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n71" edge="1" parent="1" source="n36" style="edgeStyle=none;html=1;endArrow=open;endFill=1;dashed=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=9;" target="n37" value="&amp;lt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n72" edge="1" parent="1" source="n36" style="edgeStyle=none;html=1;endArrow=open;endFill=1;dashed=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=9;" target="n38" value="&amp;lt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n74" edge="1" parent="1" source="n38" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=open;endFill=1;dashed=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=9;" target="n45" value="&amp;lt;&amp;gt;">
+          <mxGeometry relative="1" x="1" y="-338" as="geometry">
+            <mxPoint x="-75" y="-213" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n78" edge="1" parent="1" source="n13" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n27" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="512.5" y="800" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n79" edge="1" parent="1" source="n13" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n28" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="687.5" y="800" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n80" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="n29" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="207.5" y="800" as="sourcePoint" />
+            <mxPoint x="862.5000318584794" y="847.5238095238096" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n81" edge="1" parent="1" source="n15" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n42" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n82" edge="1" parent="1" source="n15" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n43" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n83" edge="1" parent="1" source="n15" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n44" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1590" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n84" edge="1" parent="1" source="n15" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;rounded=0;" target="n45" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1590" y="685.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n86" edge="1" parent="1" source="n14" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=10;" target="n15" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1Q8zUAfOanvhdUqRs1v-8" edge="1" parent="1" source="F1Q8zUAfOanvhdUqRs1v-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="n20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1Q8zUAfOanvhdUqRs1v-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B4332;strokeColor=default;fontColor=light-dark(#FFFFFF,#FFFFFF);fontSize=11;" value="Extract Information (Text, URL, Sender, Timestamp, Media)" vertex="1">
+          <mxGeometry height="80" width="175" x="235" y="390" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
