@@ -20,8 +20,12 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
+      "matches": ["https://web.whatsapp.com/*",
+        "https://web.telegram.org/*",
+        "https://discord.com/channels/*",
+        "https://app.slack.com/*",
+        "https://messenger.com/*"],
+      "js": ["content.js", "messaging-text-capture.js"],
       "run_at": "document_end"
     }
   ]
