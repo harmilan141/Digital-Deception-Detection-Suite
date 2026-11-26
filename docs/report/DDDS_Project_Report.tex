@@ -1,0 +1,635 @@
+\documentclass[12pt,letterpaper,twoside,openany]{book}
+
+\usepackage[inner=1.5in,outer=1in,top=1.85in,bottom=1.05in,headheight=15pt,headsep=24pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage{capt-of}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+
+% Roster and group from the DDDS mid-semester report. Advisor title from the project proposal.
+\newcommand{\DDDSCourse}{UCS503P -- Software Engineering Project}
+\newcommand{\DDDSTitle}{Digital Deception Detection Suite}
+\newcommand{\DDDSSubtitle}{Message Risk Classification and Link Verification}
+\newcommand{\DDDSAuthors}{\texttt{1024030503} Aman Bansal\par
+  \texttt{1024030502} Vardaan Jain\par
+  \texttt{1024030522} Harmilan\par
+  \texttt{1024030519} Siddharth\par
+  \texttt{1024030515} Yashvir Singh}
+\newcommand{\DDDSProgramme}{Group 3C34, BE Third Year, Computer Science and Engineering}
+\newcommand{\DDDSAdvisor}{Dr. Nisha Thakur}
+\newcommand{\DDDSEvaluation}{Final Software Engineering Project Report}
+\newcommand{\DDDSRepo}{https://github.com/harmilan141/Digital-Deception-Detection-Suite}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\thepage\quad\DDDSCourse}
+\fancyhead[RO]{DDDS\quad\thepage}
+\renewcommand{\headrulewidth}{0.6pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+
+\makeatletter
+\renewcommand{\frontmatter}{%
+  \clearpage\@mainmatterfalse\pagenumbering{roman}%
+}
+\renewcommand{\mainmatter}{%
+  \clearpage\@mainmattertrue\pagenumbering{arabic}%
+}
+\newcommand{\DDDSHeading}[1]{%
+  {\raggedleft\normalfont\bfseries\Huge #1\par}%
+  \vspace{5pt}\hrule height 0.8pt\relax\vspace{33pt}%
+}
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{-36pt}%
+  \ifnum\c@secnumdepth>\m@ne
+    \if@mainmatter
+      {\raggedleft\normalfont\bfseries\Large \@chapapp\space\thechapter\par}%
+      \vspace{7pt}%
+    \fi
+  \fi
+  \DDDSHeading{#1}%
+}
+\renewcommand{\@makeschapterhead}[1]{%
+  \vspace*{-31pt}\DDDSHeading{#1}%
+}
+\makeatother
+
+\setcounter{tocdepth}{2}
+\setlength{\emergencystretch}{2em}
+\raggedbottom
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\graphicspath{{diagrams/}}
+% Figures are from the project repository's docs folder at revision 74728ee0.
+% The Gantt chart is rasterized from its SVG. The three DFD levels are crops
+% of Data_flow_diagram.png, with the original labels and connections intact.
+\newenvironment{DDDSLandscapePages}{%
+  \newgeometry{margin=0.8in}%
+  \begin{landscape}%
+}{%
+  \end{landscape}%
+  \aftergroup\restoregeometry%
+}
+\newcommand{\DDDSLandscapeFigure}[3]{%
+  \clearpage
+  \thispagestyle{empty}%
+  \noindent\begin{minipage}[c][0.96\textheight][s]{\linewidth}
+    \centering
+    \vfill
+    \includegraphics[width=\linewidth,height=0.86\textheight,keepaspectratio]{#1}\par
+    \captionof{figure}{#2}
+    \label{#3}
+    \vfill
+    {\footnotesize\thepage\par}
+  \end{minipage}\par
+}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+  \centering
+  \vspace*{0.30in}
+  {\Large\bfseries \DDDSCourse\par}
+  \vspace{0.68in}
+  {\LARGE\bfseries \DDDSTitle\par}
+  \vspace{0.13in}
+  {\large \DDDSSubtitle\par}
+  \vspace{1.29in}
+  {\Large\bfseries Submitted by:\par}
+  \vspace{0.12in}
+  {\Large \DDDSAuthors\par}
+  \vspace{0.14in}
+  {\large \DDDSProgramme\par}
+  \vfill
+  {\Large\bfseries Submitted to:\par}
+  \vspace{0.10in}
+  {\large \DDDSAdvisor\par}
+  \vfill
+  {\large\DDDSEvaluation\par}
+  {\large\bfseries Computer Science and Engineering Department\par}
+  {\large Thapar Institute of Engineering and Technology, Patiala\par}
+\end{titlepage}
+
+\frontmatter
+\hypersetup{pageanchor=true}
+
+\chapter*{Abstract}
+\phantomsection
+\addcontentsline{toc}{chapter}{Abstract}
+
+The Digital Deception Detection Suite (DDDS) is a browser extension and supporting service that surface risk indicators in web chats. The extension presents message risk badges and link verdicts in the conversation, where users can review the available reasons before acting. The popup controls scanning. Message classification uses a local TF-IDF vectorizer and logistic regression model, with optional Gemini analysis. Link analysis uses local URL heuristics and an optional Google Safe Browsing lookup.
+
+This report describes the requirements, design, implementation, and verification of the reviewed DDDS2 revision. The training notebook records 96.1\% accuracy and 0.886 macro F1 for logistic regression on a held-out split of 1,195 labelled SMS messages. Six controlled URL checks, three browser fixture cases and four local API contract checks passed. In the controlled run, the single-message API median was 2.22~ms and the browser fixture badge median was 1.01~s with a simulated classifier reply. All four cases in the supplied WhatsApp Web test record passed both steps after the team confirmed the link result.
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+
+\chapter{Introduction}
+
+\section{Background and Context}
+
+Web chat users routinely decide whether to trust a request, follow a link, or share information. Impersonation and time pressure can make these decisions difficult. DDDS puts advisory indicators next to messages and links so users can inspect the available evidence while reading a conversation.
+
+\section{Problem Statement}
+
+Message wording and link destination provide different evidence. A suspicious message can contain no URL, and apparently ordinary wording can accompany a link that warrants review. The system needs to display both signals clearly and indicate when link reputation could not be verified.
+
+\section{Existing Approaches and Proposed System}
+
+A user can submit a link to a reputation service or classify a message by its wording. URL reputation supplies evidence about listed destinations. A text classifier can evaluate wording even when the message has no link. DDDS brings both checks into the chat interface. The user sees the message label and link verdict where the original content appears. The integrated build keeps these indicators independent so that a low-risk message label does not override a warning on an embedded link. \cite{proposal,integration}
+
+\section{Stakeholders}
+
+\begin{itemize}
+  \item \textbf{Chat users} enable scanning and review badges and tooltips in supported web chats.
+  \item \textbf{Project developers and evaluators} configure the prototype, maintain site-specific selectors, and assess classification and rendering.
+  \item \textbf{System administrators} manage audit logs and threat feeds in the design. \cite{project}
+\end{itemize}
+
+\section{Project Objectives}
+
+\begin{enumerate}
+  \item Display message risk badges that agree with the classifier's returned labels.
+  \item Explain link verdicts and distinguish a link with no reputation match from one that could not be verified.
+  \item Persist the user's scanning preference across reloads and remove extension markings when scanning stops.
+  \item Keep the classification API usable with the local model when Gemini is disabled.
+\end{enumerate}
+
+\section{Scope and Current Status}
+
+Table~\ref{tab:scope} records which repository supports each capability. The report uses commit \texttt{c9fd69d} to describe the integrated DDDS2 build. \cite{project,integration}
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth}p{0.23\linewidth}Y@{}}
+\toprule
+\textbf{Capability} & \textbf{Status} & \textbf{Evidence} \\
+\midrule
+Popup and text capture & In the project prototype & Browser toggle and local candidate records in \texttt{code/src}. \\
+Message classification and badges & In DDDS2 & FastAPI classifier, local model artifacts and in-chat message badges. \\
+URL verdicts & In DDDS2 & Local checks and optional Safe Browsing lookups. \\
+QR and media analysis, unified score and administrative audit & Design scope & Proposed in the project documents and design diagrams. \\
+\bottomrule
+\end{tabularx}
+\caption{Implemented and planned project scope}
+\label{tab:scope}
+\end{table}
+
+\chapter{Requirements and System Analysis}
+
+\section{Functional Requirements}
+
+\subsection{User Requirements}
+
+Users should be able to enable or disable scanning from the popup, receive a risk badge on each eligible classified message, and inspect the reason for a link verdict through a tooltip. The extension should preserve the chat text when adding indicators.
+
+\subsection{Analysis Requirements}
+
+The system should associate each classification response with the submitted message ID. It should check URLs on a separate path and surface the available reputation and heuristic evidence. When a reputation lookup is unavailable, users should be able to identify a result that remains unverified.
+
+\subsection{Requirements Traceability}
+
+Table~\ref{tab:traceability} ties the core requirements to their implementation and the acceptance cases in Chapter~\ref{chap:testing}. Requirements with shared workflows reference the same case.
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.13\linewidth}YYp{0.13\linewidth}@{}}
+\toprule
+\textbf{ID} & \textbf{Acceptance criterion} & \textbf{Implementation} & \textbf{Case} \\
+\midrule
+FR-01 & The scanning choice survives reload and turning scanning off clears chat indicators. & Popup, local storage and content-script lifecycle. & TC-01 \\
+FR-02 & An eligible incoming message shows the returned label. The outgoing control message receives no badge on WhatsApp Web. & Message capture, result matching and badge rendering. & TC-02 \\
+FR-03 & Link verdicts and reasons distinguish no verification, no reputation match and a threat match. & Local URL checks, service worker and optional reputation lookup. & TC-03 \\
+FR-04 & A batch returns its input IDs and model labels with Gemini disabled. Invalid requests are rejected. & FastAPI validation and local classifier. & TC-04 \\
+\bottomrule
+\end{tabularx}
+\caption{Functional requirements and acceptance cases}
+\label{tab:traceability}
+\end{table}
+
+\section{Non-Functional Requirements}
+
+\begin{itemize}
+  \item \textbf{Usability.} Labels and tooltips should communicate results without requiring users to interpret raw model probabilities.
+  \item \textbf{Reliability.} The classifier should continue with the local model when Gemini is disabled or unavailable.
+  \item \textbf{Performance.} Capture should process changes in batches, with latency measured separately for the local and optional secondary analysis paths.
+  \item \textbf{Privacy.} The deployment should document which text and URLs are stored locally and which are sent to optional external services.
+\end{itemize}
+
+\section{Use-Case Model}
+
+Figure~\ref{fig:use-case} shows the original project use-case model. A user submits content and reviews analysis results. The model also includes an administrator, an external threat intelligence provider, scan history, and report generation. \cite{project}
+
+\section{Activity Model}
+
+The swimlane diagram in Figure~\ref{fig:activity} follows the proposed workflow from selection in a chat platform through input validation, analysis, and display of the result. It also records proposed media analysis and scan-history features. The integrated DDDS2 build displays the available message and link indicators within the chat. \cite{project,integration}
+
+\begin{DDDSLandscapePages}
+\DDDSLandscapeFigure{use-case.png}{DDDS use-case diagram}{fig:use-case}
+\DDDSLandscapeFigure{activity.png}{DDDS activity diagram with chat extension swimlanes}{fig:activity}
+\end{DDDSLandscapePages}
+
+\chapter{Methodology and Design}
+
+\section{Development Approach}
+
+The project journals document work on the use-case, activity, data-flow, and behavioural diagrams, as well as training a message classifier. The project repository's initial extension captures candidate text for later processing. The DDDS2 build adds site-specific capture, classification requests and link verification. \cite{project,integration}
+
+Figure~\ref{fig:gantt} shows the development schedule recorded in the project's Gantt chart. \cite{project}
+
+\section{High-Level Architecture}
+
+A Chromium Manifest V3 extension supplies the popup, content scripts and service worker. Content scripts observe eligible chat pages. The service worker sends text batches to the local FastAPI classifier and handles link checks. The content scripts render results for the matching items. Browser storage holds the scanning preference, per-site message records, and cached URL verdicts. \cite{integration}
+
+\section{Technical Stack and Runtime Requirements}
+
+The extension uses JavaScript, HTML and CSS with Chromium extension APIs. The classifier uses Python, FastAPI, Pydantic and Uvicorn. Joblib loads the scikit-learn vectorizer and classifier. The optional integrations are Gemini for secondary text analysis and Google Safe Browsing for link reputation. A local demonstration requires a Chromium browser, access to a supported chat site, a Python environment with the server dependencies and both model files. Match the scikit-learn version to the environment that produced the serialized artifacts. \cite{integration,notebook}
+
+\begin{DDDSLandscapePages}
+\DDDSLandscapeFigure{gantt.png}{DDDS project development timeline}{fig:gantt}
+\end{DDDSLandscapePages}
+
+\section{Data Flow Diagrams}
+
+\subsection{Level 0: Context}
+
+Figure~\ref{fig:dfd-0} treats DDDS as one process and shows its exchanges with the user, the external threat intelligence provider, and the proposed reports viewer. \cite{project}
+
+\subsection{Level 1: System Decomposition}
+
+Figure~\ref{fig:dfd-1} decomposes the design into capture, validation, analysis, threat reputation, risk computation and storage. The scan-history and reporting stores belong to the design model. \cite{project}
+
+\subsection{Level 2: Content Analysis}
+
+Figure~\ref{fig:dfd-2} expands the content analysis process into text, URL and media checks followed by aggregation. The integrated build returns separate message and link results. Its classifier echoes submitted message IDs, and its link checker returns verdicts and reasons for the supplied URLs. \cite{project,integration}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth,height=0.78\textheight,keepaspectratio]{data-flow-level-0.png}
+\caption{Level 0 context data flow diagram}
+\label{fig:dfd-0}
+\end{figure}
+
+\begin{DDDSLandscapePages}
+\DDDSLandscapeFigure{data-flow-level-1.png}{Level 1 system data flow diagram}{fig:dfd-1}
+\DDDSLandscapeFigure{data-flow-level-2.png}{Level 2 content analysis data flow diagram}{fig:dfd-2}
+\end{DDDSLandscapePages}
+
+\section{Domain Model}
+
+Figure~\ref{fig:class} shows the design classes for scan requests, results, threat data and reports. In the integrated build, a captured message record contains a browser-side ID, text and status. Its classifier result associates that ID with a label, score, source and any available explanation. \cite{project,integration}
+
+\section{Component Model}
+
+Figure~\ref{fig:component} records the proposed extension, interface, server, analysis and storage components and their dependencies. For the implementation reviewed in this report, the extension service worker coordinates the FastAPI classifier and URL reputation checks. \cite{project,integration}
+
+\section{Behavioural Models}
+
+\subsection{Sequence Diagram}
+
+Figure~\ref{fig:sequence} traces the design workflow from initial submission through capture, validation, analysis, and delivery of the result. \cite{project}
+
+\subsection{Collaboration Diagram}
+
+Figure~\ref{fig:collaboration} shows the numbered interactions among the user, validation service, analysis engine, threat intelligence service, recommendation service and history database in the design. \cite{project}
+
+\subsection{State Diagram}
+
+Figure~\ref{fig:state} shows the proposed scan request lifecycle and the transitions to completed or failed states. In DDDS2, a captured message can remain pending while the extension waits for the classifier. A valid response supplies a supported label, and a temporary service error triggers a retry delay. \cite{project,integration}
+
+\begin{DDDSLandscapePages}
+\DDDSLandscapeFigure{class.png}{DDDS domain class diagram}{fig:class}
+\DDDSLandscapeFigure{component.png}{DDDS component diagram}{fig:component}
+\DDDSLandscapeFigure{sequence.png}{DDDS content analysis sequence diagram}{fig:sequence}
+\DDDSLandscapeFigure{collaboration.png}{DDDS analysis collaboration diagram}{fig:collaboration}
+\DDDSLandscapeFigure{state.png}{DDDS scan request state diagram}{fig:state}
+\end{DDDSLandscapePages}
+
+\chapter{Implementation Details}
+
+\section{Browser Extension}
+
+The prototype in the project repository saves candidate text in Chrome local storage. The DDDS2 content script uses site-specific selectors for WhatsApp Web, Telegram Web, Discord and Slack. It filters outgoing messages on WhatsApp Web and Telegram Web when its recognition rules apply. Messenger appears in the DDDS2 manifest, while the current message capture script defines no Messenger selectors. The popup persists changes to the enabled setting and provides an input for the optional Safe Browsing key. \cite{project,integration}
+
+Figure~\ref{fig:whatsapp-demo} shows the inline badges in WhatsApp Web. The OTP request and urgent bank message display \textit{Harmful}. The personal messages and the GitHub repository entry display \textit{Safe}. A separate URL entry displays \textit{Suspicious}.
+
+\par\medskip\noindent
+\begin{minipage}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth,keepaspectratio]{whatsapp-extension-demo.jpg}
+  \captionof{figure}{DDDS risk badges displayed in WhatsApp Web}
+  \label{fig:whatsapp-demo}
+\end{minipage}
+\par\clearpage
+
+\section{Classifier API}
+
+The Python service uses FastAPI, Uvicorn, and Pydantic. It exposes \texttt{GET /health} for readiness and model-mode information and \texttt{POST /classify} for batch classification. TF-IDF features feed a logistic regression classifier. The API maps results to \texttt{safe}, \texttt{low\_risk}, \texttt{suspicious}, or \texttt{harmful}. Its score is one minus the model's estimated probability for the \texttt{ham} class.
+
+The initial label is \texttt{safe} for a \texttt{ham} prediction with probability at or above the configured threshold (0.85 by default). Lower-confidence \texttt{ham} maps to \texttt{low\_risk}, spam maps to \texttt{suspicious}, and smishing maps to \texttt{harmful}. Gemini can review a capped set of messages with initial labels above \texttt{safe}. A successful secondary analysis can adjust the label and supply an explanation and signals. The score remains derived from the local model. \cite{integration}
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.25\linewidth}Y@{}}
+\toprule
+\textbf{Endpoint} & \textbf{Contract} \\
+\midrule
+\texttt{GET /health} & Reports model readiness, available model classes and whether Gemini is enabled. \\
+\texttt{POST /classify} & Accepts \texttt{messages}, an array of up to 100 objects with \texttt{id} and \texttt{text}. Returns results in input order, including each message ID, label, score and analysis source. IDs are limited to 64 characters and inference uses the first 2,000 characters of each text. \\
+\bottomrule
+\end{tabularx}
+\caption{Classifier API contract}
+\label{tab:api-contract}
+\end{table}
+
+\subsection{Model Training}
+
+The training notebook reads \texttt{Dataset\_5971.csv}. Its record count, schema and normalized label totals match the SMS Phishing Dataset published by Mishra and Soni. There are 4,844 ham, 638 smishing and 489 spam records. The notebook drops missing text or labels and normalizes label casing. It trains on the message text and uses the label as the target. The dataset's URL, email and phone flags do not enter the local model. \cite{notebook,dataset}
+
+The stratified 80/20 split uses random seed 42, giving 4,776 training and 1,195 test records. The notebook fits a TF-IDF vocabulary of up to 5,000 unigrams and bigrams on the training split, then applies the fitted transform to the test split. It compares class-weighted logistic regression and a linear support vector classifier. The DDDS2 runtime is configured to load logistic regression and the fitted vectorizer. \cite{notebook,integration}
+
+\section{Link Checking}
+
+The extension evaluates HTTP and HTTPS targets with URL heuristics and optionally looks them up through Google Safe Browsing. A reputation match or a high local risk score yields an unsafe verdict, while lower local warning scores yield caution. With no local risk indicators, a successful lookup with no match displays \textit{Looks safe}. An unavailable lookup in the same local condition displays \textit{Not verified}. \cite{integration}
+
+\section{Security and Privacy Considerations}
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.29\linewidth}Y@{}}
+\toprule
+\textbf{Area} & \textbf{Implemented behaviour in DDDS2} \\
+\midrule
+Scanning controls & The popup stores the user's choice and the scripts stop observing when disabled. \\
+API access & An optional configured token is checked at the classifier endpoint. \\
+Local retention & Message capture is bounded per site and URL verdicts are cached locally. \\
+External analysis & When configured, Gemini may receive eligible message text and Safe Browsing receives URL lookup requests. \\
+\bottomrule
+\end{tabularx}
+\caption{Controls and data handling in the integrated build}
+\label{tab:controls}
+\end{table}
+
+\section{Local Demonstration Setup}
+
+\begin{enumerate}
+  \item Use the integrated revision and install the Python packages listed in the server's \texttt{requirements.txt}. Keep the matching logistic regression model and TF-IDF vectorizer under the server's \texttt{models} directory.
+  \item For the local-model demonstration, set \texttt{ENABLE\_LLM=false}. From the server directory, start the service with \texttt{uvicorn server:app --host 127.0.0.1 --port 8000}. Check \texttt{GET /health} for model readiness before opening the chat.
+  \item Load the \texttt{extension} directory as an unpacked Chromium extension. Open a supported chat with synthetic messages and enable scanning in the popup. The extension's default classifier address is \url{http://127.0.0.1:8000/classify}.
+  \item For runs that use Gemini or Google Safe Browsing, record which integrations are enabled. Keep credentials outside screenshots, logs and test fixtures.
+\end{enumerate}
+
+The steps target the local demonstration configuration documented in the integrated source. They also give an evaluator a repeatable environment for the manual cases. \cite{integration}
+
+\section{Source Code}
+
+The project source code, prototype, engineering diagrams, and journals are available in the following repository.
+
+\noindent\expandafter\url\expandafter{\DDDSRepo}
+
+\chapter{Testing and Evaluation}
+\label{chap:testing}
+
+\section{Testing Methodology}
+
+Verification combines the saved notebook experiment, controlled checks of the extension's link-verdict logic, a supplied WhatsApp Web test record, and an evaluation of DDDS2 revision \texttt{c9fd69d} on 26 November 2026. The local evaluation used synthetic chat content and harmless links. The companion test case report defines the acceptance criteria.
+
+\section{Offline Model Results}
+
+Table~\ref{tab:model-results} reports the saved notebook output for the logistic regression model on the 1,195-message test split. The linear support vector classifier also recorded 96.1\% accuracy on this split and had a macro F1 of 0.882. Logistic regression had a macro F1 of 0.886 and smishing recall of 0.844, compared with 0.836 for the linear support vector classifier. \cite{notebook}
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Class or average} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} & \textbf{Support} \\
+\midrule
+Ham & 0.985 & 0.992 & 0.988 & 969 \\
+Smishing & 0.939 & 0.844 & 0.889 & 128 \\
+Spam & 0.760 & 0.806 & 0.782 & 98 \\
+\midrule
+Macro average & 0.894 & 0.881 & 0.886 & 1,195 \\
+\bottomrule
+\end{tabular}
+\caption{Logistic regression results on the notebook test split}
+\label{tab:model-results}
+\end{table}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.77\linewidth,height=0.60\textheight,keepaspectratio]{logistic-confusion-matrix.png}
+\caption{Saved logistic regression confusion matrix for the SMS test split}
+\label{fig:model-confusion}
+\end{figure}
+
+The 0.844 smishing recall means roughly one in six smishing messages was assigned another class on this split. The class distribution is skewed toward ham, so macro F1 and per-class recall provide additional context for accuracy. Figure~\ref{fig:model-confusion} shows how errors were distributed. The notebook experiment measures three-way classification on SMS. Verification of the browser's four risk labels, the Gemini stage and link detection requires separate tests. The notebook uses a row-level split and does not record a duplicate or near-duplicate audit across partitions. \cite{notebook}
+
+\section{Controlled Link Checks}
+
+Six component checks passed against the service worker's link logic at the reviewed revision. The checks ran locally with simulated Chrome storage and reputation responses. No live reputation requests were needed.
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}YYp{0.14\linewidth}@{}}
+\toprule
+\textbf{Condition} & \textbf{Observed behaviour} & \textbf{Result} \\
+\midrule
+Ordinary HTTPS, no key & Unknown verdict, with an explanation that only local checks ran. & Pass \\
+Ordinary HTTP, no key & Caution verdict, with an explanation that HTTPS is absent. & Pass \\
+Successful lookup with no match & Safe verdict for the ordinary HTTPS fixture. & Pass \\
+Repeated lookup & Cached verdict returned without another lookup. & Pass \\
+Simulated reputation threat match & Unsafe verdict with the matching threat reason. & Pass \\
+Simulated reputation service failure & Unknown verdict for the ordinary HTTPS fixture. The failure result was left out of the cache. & Pass \\
+\bottomrule
+\end{tabularx}
+\caption{Observed results of controlled link-verdict checks}
+\label{tab:link-checks}
+\end{table}
+
+\section{Recorded WhatsApp Web Tests}
+\label{sec:whatsapp-tests}
+
+The supplied test record documents four cases designed by the project team and executed on 17 November 2026 on the WhatsApp Web extension's message risk detection subsystem. The cases retain their original IDs within this section. The record does not specify the build revision, browser version or service configuration. \cite{whatsapp-tests}
+
+For all four cases, WhatsApp Web was required to be open, the extension installed and active, and a test chat available to receive each fixture. Cases 1 and 2 also required incoming text inspection and risk-label rendering. Case 4 required the extension to inspect URLs in the conversation.
+
+\subsection{TC-01 Detection of an OTP Phishing Message}
+
+\textbf{Executed by Shreya.} The incoming fixture was \textit{Please share the otp for your Amazon delivery}. The first step expected a \textit{Harmful} label and recorded that the message was marked \textit{Harmful} (Pass). The second step verified the position of the indicator and recorded that it was visible beside the OTP request (Pass). The request remained visible with its warning.
+
+\subsection{TC-02 Detection of an Urgent Bank Phishing Message}
+
+\textbf{Executed by Jiya.} The incoming fixture was \textit{URGENT: your bank account will be blocked, verify now!!!} The first step expected a \textit{Harmful} label for the urgent verification request and recorded that label (Pass). The second step verified that the warning appeared beside the bank message and recorded that it did (Pass). The bank message remained visible with its warning.
+
+\subsection{TC-03 Recognition of a Safe Personal Message}
+
+\textbf{Executed by Himani.} The incoming fixture was \textit{Hi are we still on for dinner tonight??} The first step expected a \textit{Safe} label and recorded that label (Pass). The second step checked the displayed indicator and recorded a \textit{Safe} label beside the message (Pass). The message remained visible without a harmful warning.
+
+\subsection{TC-04 Detection of a Suspicious Website Link}
+
+\textbf{Executed by Molika.} The incoming fixture was described as a GitHub repository URL. The record does not identify the exact URL. The first step recorded that the URL was marked \textit{Suspicious} (Pass). For the second step, the team confirmed that the \textit{Suspicious} label appeared beside the URL (Pass). The second-step status in this report reflects that confirmation.
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.14\linewidth}Yp{0.16\linewidth}p{0.16\linewidth}@{}}
+\toprule
+\textbf{Case} & \textbf{Recorded label} & \textbf{Step 1} & \textbf{Step 2} \\
+\midrule
+TC-01 & Harmful for the OTP request & Pass & Pass \\
+TC-02 & Harmful for the urgent bank message & Pass & Pass \\
+TC-03 & Safe for the dinner message & Pass & Pass \\
+TC-04 & Suspicious label beside the URL fixture & Pass & Pass \\
+\bottomrule
+\end{tabularx}
+\caption{Supplied WhatsApp Web test outcomes from 17 November 2026}
+\label{tab:whatsapp-results}
+\end{table}
+
+\section{Current Verification Status}
+
+Table~\ref{tab:status} records local execution of the companion acceptance cases. The browser checks ran in headless Microsoft Edge 158.0.4370.33 against a synthetic WhatsApp-style page. The test harness supplied local storage, message responses and reputation responses to the original extension content and popup scripts. It exercised badge rendering, outgoing-message exclusion, link tooltips and the scanning toggle, including reload. The supplied WhatsApp record in Section~\ref{sec:whatsapp-tests} has its own case IDs.
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.15\linewidth}Yp{0.17\linewidth}@{}}
+\toprule
+\textbf{Case} & \textbf{Verification scope} & \textbf{Execution} \\
+\midrule
+TC-01 & Toggle cleared badge and link markings. The disabled setting persisted across reload, and enabling restored the indicators. & Pass on fixture \\
+TC-02 & The incoming fixture showed the supplied classifier label. The outgoing control was neither captured nor marked. & Pass on fixture \\
+TC-03 & The link tooltip displayed \textit{Not verified}, \textit{Looks safe} and \textit{Unsafe} under the three simulated conditions. & Pass on fixture \\
+TC-04 & The local model loaded. Readiness and valid and empty batches returned HTTP 200. A request without the required field returned HTTP 422. & Pass in process \\
+\bottomrule
+\end{tabularx}
+\caption{Verification status}
+\label{tab:status}
+\end{table}
+
+\subsection{Live Demonstration Procedures}
+
+\begin{description}
+  \item[TC-01: Scanning preference.] Open a supported chat with an existing badge and link indicator. Disable scanning and reload the page. Scanning should stay disabled and the chat indicators should clear. Enable scanning and verify that eligible content can receive indicators again.
+  \item[TC-02: Message classification.] In a two-account WhatsApp Web test conversation, send distinct synthetic incoming and outgoing messages. Compare the incoming badge with the returned classifier label. The outgoing message should receive no classification badge.
+  \item[TC-03: Link verification.] Display the same harmless HTTPS link under three controlled conditions: no reputation key, a successful no-match response and a simulated threat match. Check the verdict and its tooltip in each condition.
+  \item[TC-04: Local classifier.] Start the service with Gemini disabled. Check readiness, submit a valid two-message batch, submit an empty batch, and submit an object missing the required messages field. Check that valid results preserve message IDs and use the local model. The empty batch should return an empty result list and the malformed request should return HTTP 422.
+\end{description}
+
+For a live demonstration, capture the popup state, a message badge and tooltip, a link verdict and reason, and redacted API responses for readiness and classification. The controlled API run used the repository's TF-IDF vectorizer and logistic regression files with Gemini disabled. It confirmed that a valid batch preserved IDs and returned local-model labels, and that an empty batch returned an empty result list.
+
+\section{Evaluation Metrics}
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.26\linewidth}Y>{\raggedright\arraybackslash}p{0.16\linewidth}@{}}
+\toprule
+\textbf{Metric} & \textbf{Measurement} & \textbf{Result} \\
+\midrule
+Controlled acceptance & Three browser fixture cases and one local API case. The API case contains four assertions on readiness and request behaviour. & 4 of 4 passed \\
+Link component checks & Simulated reputation and cache conditions in Table~\ref{tab:link-checks}. & 6 of 6 passed \\
+Offline detection quality & Held-out SMS split. Per-class precision, recall and F1 appear in Table~\ref{tab:model-results}. & 96.1\% accuracy, 0.886 macro F1 \\
+Classifier latency and throughput & Warm, in-process requests with Gemini disabled, measured by batch size. & Table~\ref{tab:api-benchmark} \\
+Badge latency & Time from synthetic incoming DOM insertion to badge creation, using a simulated classifier reply. & 1.01~s median, 1.02~s p95 \\
+\bottomrule
+\end{tabularx}
+\caption{Measured evaluation results and their scope}
+\label{tab:metrics}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabular}{@{}rrrrr@{}}
+\toprule
+\textbf{Batch} & \textbf{Median (ms)} & \textbf{p95 (ms)} & \textbf{Messages/s} & \textbf{Errors} \\
+\midrule
+1 & 2.22 & 3.20 & 421 & 0 \\
+10 & 2.77 & 4.13 & 3,055 & 0 \\
+50 & 4.47 & 5.66 & 10,469 & 0 \\
+\bottomrule
+\end{tabular}
+\caption{In-process local classifier benchmark}
+\label{tab:api-benchmark}
+\end{table}
+
+The benchmark used Windows on an Intel Core i7-13700H with Python 3.12.14, scikit-learn 1.9.1 and FastAPI 0.165.0. Each batch size used 20 warm-up requests and 200 measured requests at concurrency one. Throughput is the number of classified messages divided by total elapsed measurement time. The client used an in-process ASGI transport, so the measurements exclude a network hop and browser processing. The badge measurement used 20 samples after one warm-up insertion and measured the browser path with a simulated reply.
+
+Live chat accuracy requires a labelled holdout set drawn from the target chats. Live browser timing, Gemini latency and Safe Browsing response times are outside this evaluation.
+
+\section{Assessment Against Objectives}
+
+The controlled run exercised all four acceptance requirements through the browser fixture and local classifier contract. The notebook supplies separate accuracy evidence for the SMS model. The supplied WhatsApp record documents the displayed labels for three incoming messages and one URL fixture. A live run on the reviewed revision would establish how the browser checks transfer to the target chat interface and service configuration.
+
+The notebook corpus consists of SMS messages. Differences in message length, language, and formatting can affect classification on web-chat traffic. Site-specific selectors can also break after chat applications change their page structure. A live pilot should report classifier errors and capture or rendering failures separately so that each issue can be traced to the right component.
+
+\section{Pilot Plan}
+
+Run the controlled scenarios by platform, starting with WhatsApp Web. Compare local-model and Gemini-enabled runs under recorded settings. Ask participants to explain the difference between \textit{Looks safe} and \textit{Not verified}. Record browser and site-layout issues separately from model errors.
+
+\chapter{Conclusion}
+
+\section{Summary of Work}
+
+DDDS brings message risk labels and link verdicts into supported chat interfaces. The integrated build combines local classification, optional secondary analysis, link reputation checks, and controls for the user. The notebook establishes an offline model baseline, and the controlled evaluation measures classifier performance and verifies core browser behaviours. The corrected WhatsApp Web test record documents four complete passes.
+
+\section{Key Findings}
+
+Message classification and link verification provide independent evidence. The notebook recorded 0.886 macro F1 for logistic regression while the controlled link checks showed distinct outcomes for missing reputation data, no match, and a threat match. Capture depends on chat-platform markup, so compatibility needs verification by platform.
+
+\section{Future Work and Recommendations}
+
+Repeat the browser fixture cases in a live test chat and capture the resulting badges and tooltips. Measure detection quality on a documented chat holdout set. Add regression checks for chat layout changes and document when message text or URLs leave the browser.
+
+\section{Final Remarks}
+
+The next project milestone is to establish how accurately the indicators flag deceptive content and how clearly the interface communicates uncertainty.
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\begin{thebibliography}{DDDS}
+\raggedright
+\bibitem[DDDS]{project}
+Digital Deception Detection Suite. Project source code, design artefacts and journals.
+\newline\expandafter\url\expandafter{\DDDSRepo}
+
+\bibitem[PROP]{proposal}
+Digital Deception Detection Suite. Software Engineering Project Proposal.
+\newline\url{https://github.com/harmilan141/Digital-Deception-Detection-Suite/blob/main/project-proposal/main.tex}
+
+\bibitem[ML]{notebook}
+Digital Deception Detection Suite. Model training and offline evaluation notebook.
+\newline\url{https://github.com/harmilan141/Digital-Deception-Detection-Suite/blob/main/code/model_training.ipynb}
+
+\bibitem[MS22]{dataset}
+Sandhya Mishra and Devpriya Soni. \textit{SMS Phishing Dataset for Machine Learning and Pattern Recognition}. Mendeley Data, version 1, 2022.
+\newline\url{https://doi.org/10.17632/f45bkkt8pr.1}
+
+\bibitem[WA]{whatsapp-tests}
+Project Team. \textit{WhatsApp Risk Detection Test Cases}. Supplied test record, 17 November 2026.
+
+\bibitem[INT]{integration}
+DDDS2. Integrated implementation reviewed at commit \texttt{c9fd69d}.
+\newline\url{https://github.com/Siddharth-commet/DDDS2/tree/c9fd69d3d7c19b92461551c592785e8e63fe8b7f}
+\end{thebibliography}
+
+\end{document}
