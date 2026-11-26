@@ -1,14 +1,29 @@
 const PREFIX = 'messagingCapture:';
 const content = document.getElementById('content');
 
-function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, (c) => ({
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (c) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
   }[c]));
 }
 
+// low_risk -> status-low-risk (underscores become hyphens so it matches the CSS)
 function statusClass(status) {
-  return `status status-${(status || 'pending').replace(/[^a-z-]/g, '')}`;
+  const safe = String(status || 'pending').toLowerCase().replace(/_/g, '-').replace(/[^a-z-]/g, '');
+  return `status status-${safe}`;
+}
+
+function statusLabel(status) {
+  return String(status || 'pending').replace(/_/g, ' ');
+}
+
+function detailsFor(m) {
+  const parts = [];
+  if (typeof m.score === 'number') parts.push(`Risk score: ${Math.round(m.score * 100)}%`);
+  if (m.explanation) parts.push(m.explanation);
+  if (Array.isArray(m.signals) && m.signals.length) parts.push(`Signals: ${m.signals.join(', ')}`);
+  if (m.source) parts.push(`(${m.source})`);
+  return parts.join('\n');
 }
 
 async function render() {
@@ -30,7 +45,8 @@ async function render() {
       <tr>
         <td class="timestamp">${escapeHtml(new Date(m.capturedAt).toLocaleString())}</td>
         <td class="text-cell">${escapeHtml(m.text)}</td>
-        <td><span class="${statusClass(m.status)}">${escapeHtml(m.status || 'pending')}</span></td>
+        <td><span class="${statusClass(m.status)}">${escapeHtml(statusLabel(m.status))}</span></td>
+        <td class="text-cell details">${escapeHtml(detailsFor(m))}</td>
       </tr>
     `).join('');
 
@@ -42,7 +58,12 @@ async function render() {
         </div>
         <table>
           <thead>
-            <tr><th style="width:160px">Captured</th><th>Text</th><th style="width:120px">Status</th></tr>
+            <tr>
+              <th style="width:150px">Captured</th>
+              <th>Text</th>
+              <th style="width:110px">Status</th>
+              <th style="width:260px">Details</th>
+            </tr>
           </thead>
           <tbody>${rows}</tbody>
         </table>
@@ -62,7 +83,7 @@ document.getElementById('clear').addEventListener('click', async () => {
   render();
 });
 
-// Re-render automatically whenever storage changes (e.g. new message captured).
+// Re-render automatically whenever storage changes (new message captured or labelled).
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area !== 'local') return;
   if (Object.keys(changes).some((k) => k.startsWith(PREFIX))) {

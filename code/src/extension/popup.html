@@ -71,6 +71,63 @@
     input:checked + .slider:before {
       transform: translateX(18px);
     }
+    /* API key section */
+    .key {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #e5e5e5;
+    }
+    .key label {
+      display: block;
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .key input[type="password"] {
+      box-sizing: border-box;
+      width: 100%;
+      font-size: 12px;
+      padding: 6px 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    .key button {
+      margin-top: 6px;
+      font-size: 12px;
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+    }
+    .key button:hover {
+      background: #f0f0f0;
+    }
+    #keystatus {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #666;
+    }
+    .footer {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid #e5e5e5;
+    }
+    .debug-link {
+      display: block;
+      text-align: center;
+      font-size: 12px;
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: white;
+      color: #5b21b6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .debug-link:hover {
+      background: #f5f3ff;
+    }
   </style>
 </head>
 <body>
@@ -85,6 +142,18 @@
       <span class="slider"></span>
     </label>
   </div>
+
+  <div class="key">
+    <label for="sbkey">Safe Browsing API key (link checking)</label>
+    <input type="password" id="sbkey" placeholder="Paste key" autocomplete="off">
+    <button id="savekey">Save key</button>
+    <div id="keystatus"></div>
+  </div>
+
+  <div class="footer">
+    <a class="debug-link" href="debug.html" target="_blank">View captured messages</a>
+  </div>
+
   <script src="popup.js"></script>
 </body>
 </html>

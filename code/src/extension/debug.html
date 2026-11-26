@@ -89,6 +89,10 @@
       word-break: break-word;
       white-space: pre-wrap;
     }
+    .details {
+      color: #555;
+      font-size: 12px;
+    }
     .status {
       display: inline-block;
       font-size: 11px;
@@ -98,9 +102,10 @@
       text-transform: capitalize;
       white-space: nowrap;
     }
-    .status-pending { background: #f3f4f6; color: #4b5563; }
-    .status-spam, .status-phishing, .status-suspicious-link { background: #fee2e2; color: #b91c1c; }
-    .status-not-spam { background: #dcfce7; color: #15803d; }
+    .status-pending, .status-unclassified { background: #f3f4f6; color: #4b5563; }
+    .status-safe        { background: #dcfce7; color: #15803d; }
+    .status-suspicious  { background: #ffedd5; color: #c2410c; }
+    .status-harmful     { background: #fee2e2; color: #b91c1c; }
     .timestamp {
       white-space: nowrap;
       color: #888;
@@ -118,7 +123,7 @@
 </head>
 <body>
   <h1>Digital Deception Detection Suite — Captured Messages</h1>
-  <div class="sub">Live view of chrome.storage.local. Updates automatically as new messages are captured.</div>
+  <div class="sub">Live view of chrome.storage.local. Updates automatically as new messages are captured and labelled.</div>
   <div class="toolbar">
     <button id="refresh">Refresh</button>
     <button id="clear" class="danger">Clear all captured data</button>

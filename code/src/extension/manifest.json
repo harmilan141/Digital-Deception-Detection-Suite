@@ -4,7 +4,14 @@
   "version": "1.0",
   "description": "Basic extension with an enable/disable toggle that runs a content script on the page",
   "permissions": ["storage"],
-  "host_permissions": ["<all_urls>"],
+  "host_permissions": [
+    "https://safebrowsing.googleapis.com/*",
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -20,12 +27,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://web.whatsapp.com/*",
+      "matches": [
+        "https://web.whatsapp.com/*",
         "https://web.telegram.org/*",
         "https://discord.com/channels/*",
         "https://app.slack.com/*",
-        "https://messenger.com/*"],
-      "js": ["content.js", "messaging-text-capture.js"],
+        "https://messenger.com/*",
+        "https://www.messenger.com/*"
+      ],
+      "js": ["content.js", "messaging-text-capture.js", "url-checker.js"],
       "run_at": "document_end"
     }
   ]
